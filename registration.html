@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width-device-width,initial-scale=1">
+        <title>Form</title>
+        <style>
+            .box{
+                border: 2px solid black;
+                width: 22%;
+                padding: 0px 15px 15px 15px;
+                font-weight: bold;
+                box-shadow: 1px 1px 3px black;
+                border-radius: 4px;
+    
+            }
+            input{
+                margin-left: 50px;
+                border-radius: 10px;
+                box-sizing: border-box;
+                padding: 10px;
+                background-color: rgb(232, 229, 229);
+            }
+            #button{
+                background-color: rgb(11, 193, 11);
+                height: 35px;
+                color: white;
+                width: 100px;
+                
+
+            }
+            #terms{
+                margin-left: -100px;
+                height: 15px;
+            }
+            th{
+            height: 30px;
+            width: 160px;
+        }
+        label{
+            font-size: 20px;
+        }
+        </style>
+    </head>
+    <body>
+        <center>
+        <div class="box">
+            <form id="reg">
+            <h2>Registration Form</h2>
+            <label for="name">NAME</label><input type="text" id="name" placeholder="Enter full name" required><br><br>
+            <label for="email">Email</label><input type="email" id="email" placeholder="Enter email" required><br><br>
+            <label for="password">Password</label><input type="password" id="password" placeholder="Enter Password" required><br><br>
+            <label for="dob">Date of Birth</label><input type="date" id="dob" required><br><br>
+            <input type="checkbox" id="terms" required><label for="terms">Accept terms & conditions </label><br><br>
+            <button type="submit" id="button" onclick="details()">submit</button>
+        </form>
+        </div>
+        <br>
+        <br>
+        <div>
+                <h1>Entries</h1>
+            <table id="table" border="1">
+                
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Date of Birth</th>
+                        <th>Accept terms and conditions</th>
+                    </tr>
+                
+            </table>
+        </div>
+    </center>
+    <script>
+    function details() {
+        var currentyear = new Date().getFullYear();
+
+        var Name = document.getElementById("name").value;
+        var Email = document.getElementById("email").value;
+        var Password = document.getElementById("password").value;
+        var Dob = document.getElementById("dob").value;
+        var Terms = document.getElementById("terms").checked?"yes":"no";
+
+        var birthYear = new Date(Dob).getFullYear();
+        var Age=currentyear-birthYear;
+        if(Age<18 || Age >55){
+                return alert('age is less/more than required');
+            }
+        if(Name != "" && Email != "" && Password != "" && Dob != "" && Terms != "no" && Age>=18 && Age<=55) {
+          var table = document.getElementById("table");
+          var newdata = table.insertRow();
+          var col1 = newdata.insertCell(0);
+          var col2 = newdata.insertCell(1);
+          var col3 = newdata.insertCell(2);
+          var col4 = newdata.insertCell(3);
+          var col5 = newdata.insertCell(4);
+          col1.innerHTML = Name;
+          col2.innerHTML = Email;
+          col3.innerHTML = Password;
+          col4.innerHTML = Dob;
+          col5.innerHTML = Terms;
+        
+          document.getElementById("reg").reset();
+        
+        }
+        else{
+                return alert('invalid details');
+            }
+        
+      
+      }
+    </script>
+    </body>
+</html>
